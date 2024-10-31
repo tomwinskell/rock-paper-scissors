@@ -1,16 +1,12 @@
 // IDs of elements in DOM and game
-const elementKeys = ['rock', 'paper', 'scissors'];
+const elementKeys = ['rock', 'paper', 'scissors', 'js__message', 'js__game__message', 'js__game__row'];
+const gameKeys = elementKeys.slice(0,3); // returns only the game elements
 
-// creates an associative array which doesn't have a built in length method
+// creates an associative array key=elementKeys and value=DOMelement
 const domElements = crawler(elementKeys);
 
-// add click events to each DOM element
-addClickEvent(domElements, elementKeys);
-
-// get elements to manipulate at end of game
-const messageContainer = document.querySelector('.game__message')
-const gameContainer = document.querySelector('.game__row');
-const messageP = document.getElementById('js__message');
+// add click events to DOM elements
+addClickEvent(domElements, gameKeys);
 
 // builds refresh button
 document.getElementById('js__refresh').addEventListener('click', () => {location.reload()});
@@ -30,7 +26,7 @@ const whoWins = ['rockscissors','scissorspaper','paperrock']
 function game(str) {
 
   let message = '';
-  let computersChoice = random(elementKeys);
+  let computersChoice = random(gameKeys);
 
   if (computersChoice === str) {
     message = responses.draw + " " + str + " equals " + computersChoice;
@@ -55,10 +51,11 @@ function crawler(arr) {
 }
 
 // adds a click event to each key value pair in an array
+// pass in the array of DOM elements and keys to add event listener
 function addClickEvent(arr, keys) {
-  for(let i = 0; i < Object.keys(arr).length; i++) {
-    arr[keys[i]].addEventListener('click', () => {game(keys[i])});
-  }
+  keys.forEach(element => {
+    arr[element].addEventListener('click', () => {game(element)});
+  });
 }
 
 // Get the computer’s choice.
@@ -68,7 +65,7 @@ function random(keys) {
 
 // Actions completed at the end of the game
 function endGame(str) {
-  messageP.innerHTML = str;
-  gameContainer.classList.add('hidden');
-  messageContainer.classList.remove('hidden');
+  domElements['js__message'].innerHTML = str;
+  domElements['js__game__row'].classList.add('hidden');
+  domElements['js__game__message'].classList.remove('hidden');
 }
