@@ -1,0 +1,68 @@
+body {
+  font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+  background-color: orchid;
+}
+
+.game {
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
+.game, .game__message {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.game__row {
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.game__container {
+  flex-direction: column;
+  margin: 1rem 0;
+  padding: 1rem 2rem 0 2rem;
+  border-radius: 20px;
+  background-color: pink;
+}
+
+.game__container:hover {
+  cursor: pointer;
+}
+
+.game__row, .game__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game__img {
+  max-width: 100px;
+}
+
+.game__message {
+  background-color: darkorchid;
+  color: azure;
+  border-radius: 20px;
+  padding: 1rem 1rem;
+  margin: 1rem 0;
+  min-width: 600px;
+  min-height: 100px;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game__message__refresh-button {
+  background-color: indigo;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
